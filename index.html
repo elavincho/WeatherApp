@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 class="title">WeatherApp</h1>
+    </header>
+    <br>
+    <!-- Main -->
+    <main>
+
+        <div class="container">
+            <div class="location">
+
+                <form action="">
+                    <div class="error" id="msj-error"></div>
+                    <h3>País</h3>
+                    <div class="country">
+                        <select name="country" id="country">
+                            <option value="">Seleccione un País</option>
+                            <option value="AR">Argentina</option>
+                            <option value="BR">Brasil</option>
+                            <option value="PY">Paraguay</option>
+                            <option value="UY">Uruguay</option>
+                            <option value="CL">Chile</option>
+                        </select>
+                        <label for="city"></label>
+                    </div>
+                    <br>
+                    <div class="city">
+                        <h3>Ciudad</h3>
+                        <select name="city" id="city">
+                            <option value="">Seleccione una Ciudad</option>
+                            <option value="BUENOS AIRES">Buenos Aires</option>
+                            <option value="ROSARIO">Rosario</option>
+                            <option value="CORDOBA">Córdoba</option>
+                            <option value="SALTA">Salta</option>
+                            <option value="ASUNCION">Asunción</option>
+                            <option value="RIO DE JANEIRO">Rio de Janeiro</option>
+                            <option value="MONTEVIDEO">Montevideo</option>
+                            <option value="SANTIAGO">Santiago</option>
+                        </select>
+                        <label for="country"></label>
+                    </div>
+                    <br>
+                    <div>
+                        <button type="button" class="buttom" onclick="obtenerClima()">Buscar</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <!-- <br> -->
+            <div class="answerWeather" id="answerWeather"></div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p class="center">WeatherApp All Right Reserved</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
