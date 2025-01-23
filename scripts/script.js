@@ -8,12 +8,10 @@ const obtenerClima=()=> {
         mostrarError("#msj-error", "¡Debe completar los Campos!");
         return;
     }
+
+    
     consultarAPI(city, country);
 }
-
-// Contraseña OpenWeather = OpenWeather123
-
-// Contraseña AccuWeather = AccuWeather123
 
 const consultarAPI= async(city, country) => {
     const APIkey ="7cb92f19d242468809c2b32ea0cbb6b6";
@@ -27,23 +25,57 @@ const consultarAPI= async(city, country) => {
 
     console.log(result);
 
-if(result.cod == "404") {
-    mostrarError("#msj-error", "Error 404. ¡No hay Respuesta!");
+    if(result.cod == "404") {
+        mostrarError("#msj-error", "404 ¡No coincide la Ciudad con el País!");
     return;
-}
+    }
 
-const {name, main} = result;
-if(!name) return null;
+    const {name, main, weather} = result;
+    if(!name) return null;
 
-let answerWeather = document.querySelector("#answerWeather");
-answerWeather.innerHTML = `
-<div class="card">
-    <div>
-        <h2 class="center black-text">${name}</h2>
-        <br>
-        <h1 class="center orange-text">${ parseFloat(main.temp-kelvin, 10).toFixed(2) } °C</h1>
-    </div>
-</div>`;
+    const image = weather[0].icon;
+    console.log(image);
+
+    let answerWeather = document.querySelector("#answerWeather");
+    answerWeather.innerHTML = `
+    <div class="card">
+    
+        <div class="container">
+            <div class="w100 center">
+                <h2 class="blue-text">${name}</h2>
+            </div>
+            <div class="bg-img">
+                <img src="https://openweathermap.org/img/wn/${image}.png" alt="Weather icon">
+            </div>
+        </div>
+        
+        <div class="center">
+            <h1 class="pad10 orange-text">${ parseFloat(main.temp-kelvin, 10).toFixed(1) }°C</h1>
+        </div>
+
+        <div class="w100 pad-top10 container">
+            <div class="center">
+                <h4 class="blue-text">Temp. Máx:</h4>
+                <h3 class="orange-text">${ parseFloat(main.temp_max-kelvin, 10).toFixed(1) }°C</h3>
+            </div>
+
+            <div class="center">
+                <h4 class="blue-text">Temp. Mín:</h4>
+                <h3 class="orange-text">${ parseFloat(main.temp_min-kelvin, 10).toFixed(1) }°C</h3>
+            </div>
+        </div>
+        
+        <div class="w100 pad-top10 container">
+            <div class="center">
+                <h4 class="blue-text">S. Térmica:</h4>
+                <h3 class="orange-text">${ parseFloat(main.feels_like-kelvin, 10).toFixed(1) }°C</h3>
+            </div>
+            <div class="center">
+                <h4 class="blue-text">Humedad:</h4>
+                <h3 class="orange-text">${ main.humidity }%</h3>
+            </div>
+        </div>
+    </div>`;
 
 }
 
